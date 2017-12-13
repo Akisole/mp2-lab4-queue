@@ -1,4 +1,3 @@
-
 template <class T>
 class TQueue {
 	int MaxSize;
@@ -99,10 +98,16 @@ public:
 			first = 0;
 		else
 			first++;
-		size--;
+		Size--;
 		return buf; 
 	}
 
+	void SetMaxSize(int s) {
+		MaxSize=s;
+	}
+	int GetFirstPos() {
+		return first;
+	}
 	T First() {
 		if(IsEmpty())
 			throw -1;

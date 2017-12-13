@@ -99,10 +99,16 @@ public:
 			first = 0;
 		else
 			first++;
-		size--;
+		Size--;
 		return buf; 
 	}
 
+	void SetMaxSize(int s) {
+		MaxSize=s;
+	}
+	int GetFirstPos() {
+		return first;
+	}
 	T First() {
 		if(IsEmpty())
 			throw -1;
@@ -116,68 +122,4 @@ public:
 	int NumberElem() {
 		return Size;
 	}
-};
-
-template <class T>
-struct TLink {
-	T var;
-	TLink *pNext;
-};
-
-template <class T>
-class TQueue2 {
-	TLink *pFirst;
-	TLink *pLast;
-public:
-	TQueue2<T>() {
-		pFirst=pLast=NULL;
-	}
-	~TQueue2<T>() {
-		TLink *tmp=pFirst;
-		where (pFirst!=NULL) {
-			tmp = pFirst->pNext;
-			delete pFirst;
-			pFirst = tmp;
-		}
-	}
-
-	int IsEmpty() {
-		if (pFirst==NULL)
-			return 1;
-		else
-			return 0;
-	}
-	int IsFull() {
-		TLink *tmp=new TLink;
-		if(tmp==NUL)
-			return 1;
-		else {
-			delete tmp;
-			return 0;
-		}
-	}
-
-	void Push (T elem) {
-		TLink *tmp=new TLink;
-		tmp->val = elem;
-		tmp->pNext = NULL;
-		if(pFirst==NULL)
-			pFirst = pLast = tmp;
-		else {
-			pLast->pNext = tmp;
-			pLast = tmp;
-		}
-	}
-	T Pop() {
-		//если не пустой
-		T buf = pFirst->var;
-		TLink *tmp = pFirst;
-		if(pFirst==pLast)
-			pFirst=pLast=NULL;
-		else
-			pFirst = pFirst->pNext;
-		delete tmp;
-		return buf;
-	}
-
 };

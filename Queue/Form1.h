@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Queue.cpp"
+#include <stdlib.h>
 
 
 
@@ -25,13 +26,21 @@ namespace Kalk {
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::Label^  label3;
-	private: System::Windows::Forms::Label^  label4;
+
 	private: System::Windows::Forms::TextBox^  Ppush;
 	private: System::Windows::Forms::TextBox^  StartSize;
-	private: System::Windows::Forms::TextBox^  Ppop;
+
 	private: System::Windows::Forms::Button^  Start;
 	private: System::Windows::Forms::Timer^  timer1;
-	private: System::Windows::Forms::Button^  Create;
+
+	private: System::Windows::Forms::Label^  Int;
+	private: System::Windows::Forms::TextBox^  Interv;
+	private: System::Windows::Forms::Label^  Otvet;
+
+
+
+
+
 			 TQueue<int> *pQueue;
 
 	public:
@@ -82,13 +91,13 @@ namespace Kalk {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->Ppush = (gcnew System::Windows::Forms::TextBox());
 			this->StartSize = (gcnew System::Windows::Forms::TextBox());
-			this->Ppop = (gcnew System::Windows::Forms::TextBox());
 			this->Start = (gcnew System::Windows::Forms::Button());
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
-			this->Create = (gcnew System::Windows::Forms::Button());
+			this->Int = (gcnew System::Windows::Forms::Label());
+			this->Interv = (gcnew System::Windows::Forms::TextBox());
+			this->Otvet = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// MaxSize
@@ -97,6 +106,7 @@ namespace Kalk {
 			this->MaxSize->Name = L"MaxSize";
 			this->MaxSize->Size = System::Drawing::Size(33, 20);
 			this->MaxSize->TabIndex = 0;
+			this->MaxSize->Text = L"50";
 			// 
 			// label1
 			// 
@@ -112,9 +122,9 @@ namespace Kalk {
 			this->label2->AutoSize = true;
 			this->label2->Location = System::Drawing::Point(13, 40);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(52, 13);
+			this->label2->Size = System::Drawing::Size(51, 13);
 			this->label2->TabIndex = 2;
-			this->label2->Text = L"StartSize:";
+			this->label2->Text = L"       Size:";
 			// 
 			// label3
 			// 
@@ -125,21 +135,13 @@ namespace Kalk {
 			this->label3->TabIndex = 3;
 			this->label3->Text = L"P(push)";
 			// 
-			// label4
-			// 
-			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(123, 40);
-			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(38, 13);
-			this->label4->TabIndex = 4;
-			this->label4->Text = L"P(pop)";
-			// 
 			// Ppush
 			// 
-			this->Ppush->Location = System::Drawing::Point(174, 13);
+			this->Ppush->Location = System::Drawing::Point(174, 10);
 			this->Ppush->Name = L"Ppush";
 			this->Ppush->Size = System::Drawing::Size(38, 20);
 			this->Ppush->TabIndex = 5;
+			this->Ppush->Text = L"50";
 			// 
 			// StartSize
 			// 
@@ -147,21 +149,15 @@ namespace Kalk {
 			this->StartSize->Name = L"StartSize";
 			this->StartSize->Size = System::Drawing::Size(33, 20);
 			this->StartSize->TabIndex = 6;
-			// 
-			// Ppop
-			// 
-			this->Ppop->Location = System::Drawing::Point(174, 37);
-			this->Ppop->Name = L"Ppop";
-			this->Ppop->Size = System::Drawing::Size(38, 20);
-			this->Ppop->TabIndex = 7;
+			this->StartSize->Text = L"20";
 			// 
 			// Start
 			// 
-			this->Start->Location = System::Drawing::Point(232, 34);
+			this->Start->Location = System::Drawing::Point(234, 10);
 			this->Start->Name = L"Start";
-			this->Start->Size = System::Drawing::Size(56, 23);
+			this->Start->Size = System::Drawing::Size(73, 22);
 			this->Start->TabIndex = 8;
-			this->Start->Text = L"Start";
+			this->Start->Text = L"Start/Stop";
 			this->Start->UseVisualStyleBackColor = true;
 			this->Start->Click += gcnew System::EventHandler(this, &Form1::Start_Click);
 			// 
@@ -169,15 +165,32 @@ namespace Kalk {
 			// 
 			this->timer1->Tick += gcnew System::EventHandler(this, &Form1::timer1_Tick);
 			// 
-			// Create
+			// Int
 			// 
-			this->Create->Location = System::Drawing::Point(232, 10);
-			this->Create->Name = L"Create";
-			this->Create->Size = System::Drawing::Size(56, 23);
-			this->Create->TabIndex = 9;
-			this->Create->Text = L"Create";
-			this->Create->UseVisualStyleBackColor = true;
-			this->Create->Click += gcnew System::EventHandler(this, &Form1::Create_Click);
+			this->Int->AutoSize = true;
+			this->Int->Location = System::Drawing::Point(123, 40);
+			this->Int->Name = L"Int";
+			this->Int->Size = System::Drawing::Size(45, 13);
+			this->Int->TabIndex = 10;
+			this->Int->Text = L"Interval:";
+			this->Int->Click += gcnew System::EventHandler(this, &Form1::label5_Click);
+			// 
+			// Interv
+			// 
+			this->Interv->Location = System::Drawing::Point(174, 36);
+			this->Interv->Name = L"Interv";
+			this->Interv->Size = System::Drawing::Size(38, 20);
+			this->Interv->TabIndex = 11;
+			this->Interv->Text = L"100";
+			// 
+			// Otvet
+			// 
+			this->Otvet->AutoSize = true;
+			this->Otvet->Location = System::Drawing::Point(234, 44);
+			this->Otvet->Name = L"Otvet";
+			this->Otvet->Size = System::Drawing::Size(0, 13);
+			this->Otvet->TabIndex = 12;
+			this->Otvet->Click += gcnew System::EventHandler(this, &Form1::label4_Click);
 			// 
 			// Form1
 			// 
@@ -185,12 +198,12 @@ namespace Kalk {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->ClientSize = System::Drawing::Size(319, 242);
-			this->Controls->Add(this->Create);
+			this->Controls->Add(this->Otvet);
+			this->Controls->Add(this->Interv);
+			this->Controls->Add(this->Int);
 			this->Controls->Add(this->Start);
-			this->Controls->Add(this->Ppop);
 			this->Controls->Add(this->StartSize);
 			this->Controls->Add(this->Ppush);
-			this->Controls->Add(this->label4);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
@@ -205,37 +218,62 @@ namespace Kalk {
 		}
 #pragma endregion
 
-/*private: System::Void Chastn_Click(System::Object^  sender, System::EventArgs^  e) {
-			int a = Convert::ToInt32 (number1 -> Text);
-			int b = Convert::ToInt32 (number2 -> Text);
-			double r =(double)a/(double)b;
-			Otvet -> Text = Convert::ToString(r);
-		 }*/
 private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e) {
 		 }
 
-
 private: System::Void Start_Click(System::Object^  sender, System::EventArgs^  e) {
-			 timer1 -> Enabled = true;
-		 }
-private: System::Void timer1_Tick(System::Object^  sender, System::EventArgs^  e) {
-			 
+			 if (timer1 -> Enabled == true)
+				 timer1 -> Enabled = false;
+			 else {
+				 gr->DrawArc(Pens::White, 75, 75, 125, 125, 0, 360);
+				 int StartS = Convert::ToInt32 (StartSize -> Text);
+				 int MaxS = Convert::ToInt32 (MaxSize -> Text);
 
+				 pQueue=new TQueue<int>;
+				 for(int i=0; i<StartS; i++)
+				 pQueue->Push(1);
+				 pQueue->SetMaxSize(MaxS);
+
+				 int inte = Convert::ToInt32 (Interv -> Text);
+				 timer1 -> Interval = inte;
+
+				 timer1 -> Enabled = true;
+			 }
 		 }
-private: System::Void Create_Click(System::Object^  sender, System::EventArgs^  e) {
-		     gr->DrawArc(Pens::White, 75, 75, 125, 125, 0, 360);
+
+private: System::Void timer1_Tick(System::Object^  sender, System::EventArgs^  e) {
+			 try {
+			 Otvet -> Text ="";
+			
 			 int MaxS = Convert::ToInt32 (MaxSize -> Text);
+			 int push = Convert::ToInt32 (Ppush -> Text);
 			 int StartS = Convert::ToInt32 (StartSize -> Text);
 
-			 TQueue<int> Que(MaxS);
-			 for( int i=0; i<StartS; i++)
-				 Que.Push(1);
-			 pQueue=&Que;
-
-			 int su = 360*pQueue->First()/MaxS;
+			 int rubb=1;
+			 int ver = rand()%100;
+			 if (ver<=push) {
+				 pQueue->Push(rubb);
+				 StartSize->Text=Convert::ToString(StartS+1);
+			 }
+			 else {
+				 rubb = pQueue->Pop();
+				 StartSize->Text=Convert::ToString(StartS-1);
+			 }
+			 
+			 int su = 360*pQueue->GetFirstPos()/MaxS;
 			 int ku = 360*pQueue->NumberElem()/MaxS;
+			 gr->DrawArc(Pens::White, 75, 75, 125, 125, 0, 360);
 			 gr->DrawArc(Pens::Black, 75, 75, 125, 125, su, ku);
+			
+			 } 
+			 catch(...) {
+				 Otvet -> Text ="Error";
+			 }
+		 }
 
+private: System::Void label5_Click(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void label4_Click(System::Object^  sender, System::EventArgs^  e) {
 		 }
 };
 }
