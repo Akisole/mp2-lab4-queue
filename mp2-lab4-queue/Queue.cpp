@@ -101,9 +101,18 @@ public:
 		Size--;
 		return buf; 
 	}
+	T Top()	{
+		if(IsEmpty())
+			throw -1;
+		return mas[first];
+	}
 
 	void SetMaxSize(int s) {
+		if(!IsEmpty())
+			throw -1;
 		MaxSize=s;
+		delete[] mas;
+		mas = new T[MaxSize];
 	}
 	int GetFirstPos() {
 		return first;
@@ -116,7 +125,7 @@ public:
 	T Last() {
 		if(IsEmpty())
 			throw -1;
-		return mas[first];
+		return mas[last];
 	}
 	int NumberElem() {
 		return Size;

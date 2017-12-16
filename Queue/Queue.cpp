@@ -102,6 +102,12 @@ public:
 		Size--;
 		return buf; 
 	}
+	T Top()	{
+		if(IsEmpty())
+			throw -1;
+		return mas[first];
+	}
+
 
 	void SetMaxSize(int s) {
 		MaxSize=s;
